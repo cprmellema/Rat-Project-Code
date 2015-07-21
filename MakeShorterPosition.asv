@@ -1,0 +1,18 @@
+function [ practicepos ] = MakeShorterPosition( positions, fs, newtimesteps )
+%This function bins the massive data into a smaller piece where the
+%spiketimes are convertend into 0/1 spikes within a specific time window
+
+time=(1/fs)*length(positions);
+
+newlength=ceil(time/newtimesteps);
+
+practicepos=zeros(newlength,1);
+
+for i=1:newlength
+   time=i*newtimesteps;
+   newslot=round(time/newtimesteps);
+   oldslot=floor((newslot/newlength)*oldlength)+1;
+   practicepos(newslot,1)=positions(oldslot,1);
+end
+
+end
