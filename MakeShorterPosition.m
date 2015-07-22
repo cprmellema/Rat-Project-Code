@@ -1,13 +1,6 @@
-function [ practicepos ] = MakeShorterPosition( positions, times, fs, newtimesteps )
+function [ practicepos ] = MakeShorterPosition( positions, times, newtimesteps )
 %This function bins the massive data into a smaller piece where the
 %position is only sampled in a smaller bin
-
-positions=positions(1:end-1,:);
-
-times=times(1:end-1,:);
-a=times(1,1);
-times=times-a;
-times=times/1000;
 
 newlength=ceil(times(end,:)/newtimesteps);
 

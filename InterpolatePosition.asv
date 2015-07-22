@@ -1,0 +1,53 @@
+function [ interp_pos ] = InterpolatePosition( positions, times, spiketimes )
+%This function bins the massive data into a smaller piece where the
+%position is only sampled in a smaller bin
+
+times(end,:)=[];
+positions(end,:)=[];
+endtime=min(spiketimes(end,1),times(end,1));
+
+if spiketimes(end,1)>times(end,1)
+   n=length(spiketimes);
+   for i=1:n
+      
+      if i>=length(spiketimes)
+           break 
+      elseif spiketimes(i,1)>endtime
+         spiketimes(i,:)=[];
+                 
+      end
+   end    
+else
+    
+    n=length(times);
+    for i=1:n
+     
+        if i>=length(times)
+           break
+        elseif times(i,1)>endtime
+           times(i,:)=[];
+        end
+    end
+    
+end
+
+interp_pos=zeros(length(spiketimes),1);
+
+j=1
+for i=1:length(interp_pos)
+   time=spiketimes(i);
+
+   [~,bin]=histc(time,times);
+   bin
+
+   index=bin+1;
+   
+   if abs(time-times(bin))<abs(time-times(bin+1))
+      index=bin;
+   end
+   
+   interp_pos(i)=positions(index);
+   
+end
+
+end
