@@ -24,6 +24,7 @@ function output = ratGLM( spikes,distrib,link,backstep,forwardstep)
 %because of one iteration outside of a loop, we crank backstep back 
 %by 1. This does impose the constraint on the code that the backstep
 %must be >=2
+tic
 backstep=backstep-1;
 forwardstep=forwardstep-1;
 position = spikes(:,end-1:end);
@@ -190,5 +191,5 @@ for h=1:n
 end
 
 output.rsquared=rsq;
-
+toc
 end

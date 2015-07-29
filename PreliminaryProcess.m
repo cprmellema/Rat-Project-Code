@@ -2,37 +2,45 @@
 %simple abbreviation of the position data and runs the GLM on it, both
 %a simple LM and an exponential GLM
 
-A=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session1');
-B=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session2');
-C=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session3');
-D=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session4');
+Animal1Trial1Spikes=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session1');
+save('SpikeDataRat121S1.mat','Animal1Trial1Spikes')
+clear Animal1Trial1Spikes
+Animal1Trial2Spikes=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session2');
+save('SpikeDataRat121S2.mat','Animal1Trial2Spikes')
+clear Animal1Trial2Spikes
+Animal1Trial3Spikes=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session3');
+save('SpikeDataRat121S3.mat','Animal1Trial3Spikes')
+clear Animal1Trial3Spikes
 
-A1=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_122\Session1');
-B1=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_122\Session2');
+%D=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_121\Session4');
 
-save('PracticeSpikeDataRat121S1.mat','A')
-save('PracticeSpikeDataRat121S2.mat','B')
-save('PracticeSpikeDataRat121S3.mat','C')
-save('PracticeSpikeDataRat121S4.mat','D')
+Animal2Trial1Spikes=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_122\Session1');
+save('SpikeDataRat122S1.mat','Animal2Trial1Spikes')
+clear Animal2Trial1Spikes
+Animal2Trial2Spikes=MakeSpikeData('C:\Users\Cooper\Desktop\Documents\School\Post-Bac\Rat experiment (Sum2015-present)\data_tdt_sessions\Animal_122\Session2');
+save('SpikeDataRat122S2.mat','Animal2Trial2Spikes')
+clear Animal2Trial2Spikes
 
-save('PracticeSpikeDataRat122S1.mat','A1')
-save('PracticeSpikeDataRat122S2.mat','B1')
+%save('PracticeSpikeDataRat121S4.mat','D')
+% 
+Animal1Trial1LM=ratGLM(Animal1Trial1Spikes,'normal','identity',6,1);
+save('SpikeLMRat121S1.mat','Animal1Trial1LM')
+clear Animal1Trial1LM
 
-AA=ratGLM(A,'normal','identity',3,1);
-BB=ratGLM(B,'normal','identity',3,1);
-CC=ratGLM(C,'normal','identity',3,1);
-DD=ratGLM(D,'normal','identity',3,1);
+Animal1Trial2LM=ratGLM(Animal1Trial2Spikes,'normal','identity',6,1);
+save('SpikeLMRat121S2.mat','Animal1Trial2LM')
+clear Animal1Trial2LM
 
-A1A1=ratGLM(A1,'normal','identity',3,1);
-B1B1=ratGLM(B1,'normal','identity',3,1);
-
-save('PracticeSpikeLMRat121S1.mat','AA')
-save('PracticeSpikeLMRat121S2.mat','BB')
-save('PracticeSpikeLMRat121S3.mat','CC')
-save('PracticeSpikeLMRat121S4.mat','DD')
-
-save('PracticeSpikeLMRat122S1.mat','A1A1')
-save('PracticeSpikeLMRat122S2.mat','B1B1')
+Animal1Trial3LM=ratGLM(Animal1Trial3Spikes,'normal','identity',6,1);
+save('SpikeLMRat121S3.mat','Animal1Trial3LM')
+clear Animal1Trial3LM
+ 
+% save('SpikeLMRat121S2.mat','Animal1Trial2LM')
+% save('SpikeLMRat121S3.mat','Animal1Trial3LM')
+% %save('PracticeSpikeLMRat121S4.mat','DD')
+% 
+% save('SpikeLMRat122S1.mat','Animal2Trial1LM')
+% save('SpikeLMRat122S2.mat','Animal2Trial2LM')
 
 
 % Note: Can't do GLM as stands: need non-negative value for all inputs
